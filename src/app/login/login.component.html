@@ -1,0 +1,35 @@
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-md-4">
+        <h1 class="text-center">Login</h1>
+        <form (ngSubmit)="handleLogin(login)" [formGroup]="login" class="py-3">
+          <div class="form-group mb-4">
+            <label for="" class="fw-bold mb-2">E-mail</label>
+            <input id="email" placeholder="example@mail.com" type="email" class="form-control border border-2 border-dark"
+              formControlName="email">
+            <div *ngIf="login?.get('email')?.errors && login.get('email')?.touched">
+              <p *ngIf="login.get('email')?.getError('email')" class="alert alert-danger p-1 m-0">In Valid Email</p>
+              <p *ngIf="login.get('email')?.getError('required')" class="alert alert-danger p-1 m-0">Email Is Required</p>
+            </div>
+          </div>
+          <div class="form-group mb-4">
+            <label for="" class="fw-bold mb-2">Password</label>
+            <input formControlName="password" placeholder="**********" type="password"
+              class="form-control border border-2 border-dark">
+            <div *ngIf="login?.get('password')?.errors && login.get('password')?.touched">
+              <p *ngIf="login.get('password')?.getError('required')" class="alert alert-danger p-1 m-0">Password Is Required</p>
+            </div>
+          </div>
+                      <p class="alert alert-danger" *ngIf="messageError">{{messageError}}</p>
+
+          <button [disabled]="login.invalid" class="btn btn-outline-dark me-4">Login Now</button>
+          <a routerLink="/register">Dont Have Account</a>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <img width="400" src="assets/img/carousel-2.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>

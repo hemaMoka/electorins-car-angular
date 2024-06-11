@@ -1,0 +1,59 @@
+<section class="hero" style="background-image: url(assets/img/service-1.jpg);">
+    <div class="container">
+      <h1 class="text-white">Our Cars</h1>
+    </div>
+</section>
+
+<section class="py-5">
+  <div class="container w-75 ">
+    <div class="">
+      <div *ngFor="let car of cars" class="row p-2 mb-5 bg-light justify-content-between align-items-center">
+        <div class="col-md-3">
+          <img class="w-100" height="200" [src]="car.image" alt="">
+        </div>
+        <div class=" col-md-7">
+          <h3 class="h5 fw-bold">{{car.title}}</h3>
+          <h5>{{car.price|currency:"EGP"}}</h5>
+          <button (click)="bookCar(car)" class="btn btn-success w-100 fw-bolder">Book Car</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section *ngIf="book"
+  class="over position-fixed d-flex align-items-center  bg-opacity-75 top-0 vh-100 bg-dark start-0 w-100">
+  <div class="container position-relative w-75 bg-light rounded-4 py-5">
+    <i (click)="book = false" class="fa-solid text-danger position-absolute fa-square-xmark"></i>
+    <div class="carDetails d-flex justify-content-center">
+      <div class="col-md-4">
+        <img width="200" height="200" [src]="myCar.image" alt="">
+      </div>
+      <div class="col-md-6">
+        <h4>{{myCar.title}}</h4>
+        <h5>{{myCar.price|currency:"EGP"}}</h5>
+      </div>
+    </div>
+    <form>
+      <div class="form-group mb-4">
+        <label class="fw-bolder fs-5 mb-2" for="">Name</label>
+        <input [value]="userData.name" type="text" class="form-control">
+      </div>
+      <div class="form-group mb-4">
+        <label class="fw-bolder fs-5 mb-2" for="">E_mail</label>
+        <input [value]="userData.email" type="text" class="form-control">
+      </div>
+      <div class="form-group mb-4">
+        <label class="fw-bolder fs-5 mb-2" for="">Phone Number</label>
+        <input [value]="userData.phone" type="tel" class="form-control">
+      </div>
+      <div class="form-group mb-4">
+        <label class="fw-bolder fs-5 mb-2" for="">Addres</label>
+        <input type="text" class="form-control">
+      </div>
+      <button (click)="handleBook($event)" class="btn btn-success fw-bolder"> Confirm Book</button>
+    </form>
+
+  </div>
+</section>
